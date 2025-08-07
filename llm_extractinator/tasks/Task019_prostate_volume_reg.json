@@ -1,0 +1,18 @@
+{
+    "Task": "Prostate volume extraction",
+    "Type": "Regression",
+    "Description": "This task involves predicting the prostate volume in cubic centimeters, which is either directly described in the radiology report, or needs to be calculated based on the PSA density or the given measurements. All required information is provided in the report, and the PSA density is related to the PSA and prostate volume as: prostate volume = PSA / PSA density.",
+    "Data_Path": "test.json",
+    "Input_Field": "text",
+    "Label_Field": "single_label_regression_target",
+    "Parser_Format": {
+        "reasoning": {
+            "type": "str",
+            "description": "The thought process leading to the final answer."
+        },
+        "label": {
+            "type": "float",
+            "description": "The prostate volume in cubic centimeters."
+        }
+    }
+}

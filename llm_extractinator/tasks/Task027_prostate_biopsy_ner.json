@@ -1,0 +1,42 @@
+{
+    "Task": "Prostate biopsy sampling",
+    "Type": "Multi Label Named Entity Recognition",
+    "Description": "Your task is to analyze prostate biopsy reports to identify and classify sequences of words that describe the location of each numbered biopsy and to determine whether the lesion sampling was REPRESENTATIVE (representatief), NOT REPRESENTATIVE (niet representatief), or AMBIGUOUS (ambigu). The output should be a list of each biopsy, where for each biopsy, you include: 1) the biopsy number as an integer (converted from Roman numerals I, II, III, etc.), 2) the exact words that describe the biopsy location, 3) the quality of the biopsy sampling (representatief, niet representatief, ambigu), and 4) the exact words that describe the quality. Ensure all classifications are accurate and based solely on the information in the text. Example Output Format: [{{\"number\": 1, \"location\": \"left apex\", \"quality\": \"REPRESENTATIVE\", \"quality_description\": \"adequate tissue sample\"}}, {{\"number\": 2, \"location\": \"right base\", \"quality\": \"NOT REPRESENTATIVE\", \"quality_description\": \"insufficient tissue\"}}]. By adhering to these instructions, you will deliver a structured and detailed analysis of the biopsy report.",
+    "Data_Path": "test.json",
+    "Input_Field": "text",
+    "Label_Field": "multi_label_named_entity_recognition_target",
+    "Parser_Format": {
+        "biopsies": {
+            "type": "list",
+            "description": "A list of each biopsy analyzed from the text.",
+            "items": {
+                "type": "dict",
+                "description": "Details of each biopsy",
+                "Optional": "True",
+                "properties": {
+                    "number": {
+                        "type": "int",
+                        "description": "The biopsy number as an integer, converted from Roman numerals"
+                    },
+                    "location": {
+                        "type": "str",
+                        "description": "The exact words that describe the biopsy location"
+                    },
+                    "quality": {
+                        "type": "str",
+                        "description": "The quality of the biopsy sampling",
+                        "literals": [
+                            "representatief",
+                            "niet representatief",
+                            "ambigu"
+                        ]
+                    },
+                    "quality_description": {
+                        "type": "str",
+                        "description": "The exact words that describe the quality of the biopsy sampling"
+                    }
+                }
+            }
+        }
+    }
+}
